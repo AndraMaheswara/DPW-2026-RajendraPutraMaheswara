@@ -6,8 +6,8 @@
 | Jobsheet | Jobsheet01 |
 
 ## Struktur File
+```
 jobsheet-01/
-├── Dokumentasi/
 ├── anggota/
 │   ├── list.html
 │   └── tambah.html
@@ -16,7 +16,7 @@ jobsheet-01/
 │   └── tambah.html
 ├── README.md
 └── index.html
-
+```
 
 ## Ringkasan
 Jobsheet 01 berfokus pada penerapan elemen HTML5 Semantic (<header>, <nav>, <main>, <section>, <article>, dan <footer>) untuk membangun struktur web yang terorganisir dan standar. 
