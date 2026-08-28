@@ -1,0 +1,419 @@
+
+/* ===== Reset & Base ===== */
+
+/* Selector * berarti memilih SEMUA elemen HTML */
+* {
+    /* box-sizing: border-box membuat width/height termasuk padding dan border */
+    box-sizing: border-box;
+
+    /* Menghilangkan margin bawaan dari browser */
+    margin: 0;
+
+    /* Menghilangkan padding bawaan dari browser */
+    padding: 0;
+}
+
+/* Mengatur tampilan dasar seluruh halaman */
+body {
+    /* Menentukan jenis font yang digunakan */
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    /* Menentukan warna teks */
+    color: #4a3540;
+
+    /* Menentukan warna background halaman */
+    background-color: #fff5f8;
+
+    /* Mengatur jarak antarbaris teks */
+    line-height: 1.5;
+}
+
+/* Memilih semua elemen <a> / hyperlink */
+a {
+    /* Mengubah warna link */
+    color: #c45b7c;
+
+    /* Menghilangkan garis bawah bawaan link */
+    text-decoration: none;
+}
+
+/* :hover berarti aturan berlaku ketika mouse berada di atas link */
+a:hover {
+    /* Menampilkan kembali garis bawah ketika link di-hover */
+    text-decoration: underline;
+}
+
+
+/* ===== Header & Navbar (Flexbox) ===== */
+
+/* Memilih elemen <header> */
+header {
+    /* Warna background header */
+    background-color: #d96b8a;
+
+    /* Warna teks di dalam header */
+    color: #fff;
+
+    /* Jarak bagian dalam header */
+    /* 1rem atas-bawah, 1.5rem kiri-kanan */
+    padding: 1rem 1.5rem;
+
+    /* Mengaktifkan Flexbox */
+    display: flex;
+
+    /* Menempatkan item secara vertikal di tengah */
+    align-items: center;
+
+    /* Membuat item pertama di kiri dan item terakhir di kanan */
+    justify-content: space-between;
+
+    /* Jika layar terlalu sempit, item boleh turun ke baris berikutnya */
+    flex-wrap: wrap;
+}
+
+/* Memilih <h1> yang berada di dalam header */
+header h1 {
+    /* Mengatur ukuran font menjadi 1.4rem */
+    font-size: 1.4rem;
+}
+
+/* Memilih <ul> yang berada di dalam <nav> di dalam header */
+header nav ul {
+    /* Menghilangkan bullet/list bawaan <ul> */
+    list-style: none;
+
+    /* Mengaktifkan Flexbox untuk daftar menu */
+    display: flex;
+
+    /* Memberikan jarak 1.25rem antar menu */
+    gap: 1.25rem;
+}
+
+/* Memilih link <a> yang berada di dalam nav header */
+header nav a {
+    /* Warna teks link menjadi putih */
+    color: #fff;
+
+    /* Membuat teks sedikit lebih tebal */
+    font-weight: 500;
+}
+
+
+/* ===== Main Layout ===== */
+
+/* Memilih elemen <main> */
+main {
+    /* Lebar maksimum konten adalah 1000px */
+    max-width: 1000px;
+
+    /* 
+       margin:
+       2rem = atas dan bawah
+       auto = kiri dan kanan otomatis
+       
+       Hasilnya: main berada di tengah halaman
+    */
+    margin: 2rem auto;
+
+    /* Jarak bagian dalam kiri dan kanan */
+    padding: 0 1.5rem;
+}
+
+/* Memilih semua elemen <section> */
+section {
+    /* Warna background section adalah putih */
+    background-color: #fff;
+
+    /* Membuat sudut section membulat */
+    border-radius: 8px;
+
+    /* Jarak antara isi section dengan tepinya */
+    padding: 1.5rem;
+
+    /* Jarak antara section satu dengan section lainnya */
+    margin-bottom: 1.5rem;
+
+    /* Memberikan bayangan tipis pada section */
+    box-shadow: 0 1px 3px rgba(180, 90, 120, 0.12);
+}
+
+/* Memilih <h2> yang ada di dalam section */
+section h2 {
+    /* Memberikan jarak bawah setelah judul */
+    margin-bottom: 1rem;
+
+    /* Mengubah warna judul */
+    color: #c45b7c;
+}
+
+
+/* ===== Kartu Statistik (CSS Grid) ===== */
+
+/*
+   nth-of-type(2) berarti memilih <section> KEDUA
+   yang berada di dalam <main>
+*/
+main section:nth-of-type(2) {
+    /* Mengaktifkan CSS Grid */
+    display: grid;
+
+    /*
+       Membuat 3 kolom dengan ukuran sama rata.
+       1fr = 1 bagian dari ruang yang tersedia.
+    */
+    grid-template-columns: repeat(3, 1fr);
+
+    /* Memberikan jarak 1rem antar kartu */
+    gap: 1rem;
+}
+
+/*
+   Memilih setiap <article> yang berada
+   di dalam section kedua
+*/
+main section:nth-of-type(2) article {
+    /* Warna background kartu */
+    background-color: #fff0f4;
+
+    /* Membuat sudut kartu membulat */
+    border-radius: 8px;
+
+    /* Jarak antara isi kartu dengan tepinya */
+    padding: 1.25rem;
+
+    /* Membuat teks berada di tengah */
+    text-align: center;
+}
+
+/* Memilih <h3> di dalam kartu statistik */
+main section:nth-of-type(2) article h3 {
+    /* Ukuran teks judul kartu */
+    font-size: 0.95rem;
+
+    /* Warna teks judul kartu */
+    color: #80616d;
+
+    /* Jarak antara h3 dan elemen di bawahnya */
+    margin-bottom: 0.5rem;
+}
+
+/* Memilih <p> di dalam kartu statistik */
+main section:nth-of-type(2) article p {
+    /* Membuat ukuran angka statistik lebih besar */
+    font-size: 1.8rem;
+
+    /* Membuat angka menjadi tebal */
+    font-weight: 700;
+
+    /* Warna angka statistik */
+    color: #c45b7c;
+}
+
+
+/* ===== Tabel ===== */
+
+/* Memilih elemen <table> */
+table {
+    /* Membuat tabel menggunakan seluruh lebar yang tersedia */
+    width: 100%;
+
+    /*
+       Menggabungkan border antar cell.
+       Tanpa ini, border antar cell bisa terlihat terpisah.
+    */
+    border-collapse: collapse;
+}
+
+/* Memilih semua <th> dan <td> */
+th, td {
+    /* Membuat teks berada di sebelah kiri */
+    text-align: left;
+
+    /* Memberikan ruang di dalam cell */
+    padding: 0.65rem 0.75rem;
+
+    /* Memberikan garis bawah pada setiap cell */
+    border-bottom: 1px solid #f1d8e0;
+}
+
+/* Memilih bagian kepala tabel <thead> */
+thead {
+    /* Warna background kepala tabel */
+    background-color: #f05858;
+
+    /* Warna teks menjadi putih */
+    color: #fff;
+}
+
+/*
+   nth-child(even) memilih baris GENAP:
+   baris ke-2, ke-4, ke-6, dst.
+*/
+tbody tr:nth-child(even) {
+    /* Memberikan warna berbeda pada baris genap */
+    background-color: #fff8fa;
+}
+
+/*
+   :hover aktif ketika mouse berada di atas sebuah baris
+*/
+tbody tr:hover {
+    /* Mengubah background baris ketika di-hover */
+    background-color: #ffeaf0;
+}
+
+/*
+   Memilih button yang berada di dalam <td>
+*/
+td button {
+    /* Jarak bagian dalam tombol */
+    padding: 0.35rem 0.7rem;
+
+    /* Memberikan jarak kanan antar tombol */
+    margin-right: 0.35rem;
+
+    /* Menghilangkan border bawaan tombol */
+    border: none;
+
+    /* Membuat sudut tombol membulat */
+    border-radius: 4px;
+
+    /* Cursor berubah menjadi tangan ketika diarahkan ke tombol */
+    cursor: pointer;
+
+    /* Ukuran teks tombol */
+    font-size: 0.85rem;
+}
+
+/*
+   first-of-type memilih button pertama
+   dalam sebuah <td>
+*/
+td button:first-of-type {
+    /* Warna tombol pertama */
+    background-color: #f0ad4e;
+
+    /* Warna teks tombol */
+    color: #fff;
+}
+
+/*
+   last-of-type memilih button terakhir
+   dalam sebuah <td>
+*/
+td button:last-of-type {
+    /* Warna tombol terakhir */
+    background-color: #d13630;
+
+    /* Warna teks tombol */
+    color: #fff;
+}
+
+
+/* ===== Form ===== */
+
+/*
+   Memilih <p> yang berada di dalam <form>
+*/
+form p {
+    /* Memberikan jarak bawah antar input/form group */
+    margin-bottom: 1rem;
+}
+
+/*
+   Memilih <label> yang berada di dalam form
+*/
+form label {
+    /* Membuat label menjadi satu baris penuh */
+    display: block;
+
+    /* Memberikan jarak antara label dan input */
+    margin-bottom: 0.35rem;
+
+    /* Membuat tulisan label lebih tebal */
+    font-weight: 600;
+
+    /* Warna teks label */
+    color: #5d4650;
+}
+
+/*
+   Memilih <input> dan <select> yang berada di dalam form
+*/
+form input,
+form select {
+    /* Lebar input mengikuti lebar parent */
+    width: 100%;
+
+    /* Tetapi lebar maksimal hanya 400px */
+    max-width: 400px;
+
+    /* Jarak antara teks dengan tepi input */
+    padding: 0.55rem 0.7rem;
+
+    /* Border input */
+    border: 2px solid #e4b8c7;
+
+    /* Membuat sudut input membulat */
+    border-radius: 4px;
+
+    /* Ukuran tulisan di dalam input */
+    font-size: 1rem;
+    
+    background-color: #fffafb;
+}
+
+/*
+   Memilih button submit:
+   <button type="submit">
+*/
+form button[type="submit"] {
+    /* Warna background tombol */
+    background-color: #d96b8a;
+
+    /* Warna teks tombol */
+    color: #fff;
+
+    /* Menghilangkan border bawaan */
+    border: none;
+
+    /* Jarak bagian dalam tombol */
+    padding: 0.6rem 1.5rem;
+
+    /* Membuat sudut tombol membulat */
+    border-radius: 4px;
+
+    /* Ukuran teks */
+    font-size: 1rem;
+
+    /* Cursor berubah menjadi tangan */
+    cursor: pointer;
+}
+
+/*
+   :hover aktif ketika mouse berada di atas
+   tombol submit
+*/
+form button[type="submit"]:hover {
+    /* Mengubah warna tombol ketika di-hover */
+    background-color: #164869;
+}
+
+
+/* ===== Footer ===== */
+
+/* Memilih elemen <footer> */
+footer {
+    /* Membuat teks berada di tengah */
+    text-align: center;
+
+    /* Memberikan jarak bagian dalam footer */
+    padding: 1.25rem;
+
+    /* Warna teks footer */
+    color: #7a8794;
+
+    /* Ukuran tulisan footer sedikit lebih kecil */
+    font-size: 0.9rem;
+}
+
