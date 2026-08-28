@@ -1,4 +1,4 @@
-|  | Deisain Pemrograman Web |
+|  | Desain Pemrograman Web |
 |--|--|
 | NIM |  254107020090|
 | Nama |  Rajendra Putra Maheswara |
