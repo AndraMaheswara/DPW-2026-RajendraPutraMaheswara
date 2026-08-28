@@ -2,7 +2,7 @@
 |--|--|
 | NIM |  254107020090|
 | Nama |  Rajendra Putra Maheswara |
-| Kelas | TI - 1F |
+| Kelas | TI - 2D |
 | Jobsheet | Jobsheet01 |
 
 ## Struktur File
