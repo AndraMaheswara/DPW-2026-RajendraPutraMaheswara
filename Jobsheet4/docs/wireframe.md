@@ -95,3 +95,4 @@ Jujur masih bingung jadi saya cuman copas dan rapiin dikit.
 |  Bumi Manusia      | 15/07    | -       | Dipinjam    |
 +-------------------------------------------------------+
 ```
+
