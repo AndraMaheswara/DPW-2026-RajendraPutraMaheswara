@@ -347,7 +347,17 @@ td strong { color: var(--text-primary); }
     cursor: pointer;
     font-size: .68rem;
 }
-.btn-table:hover { color: #1e1b24; background: var(--accent); }
+ .btn-table:hover { color: #1e1b24; background: var(--accent); }
+.btn-table.btn-danger {
+    color: var(--danger);
+    background: rgba(255,158,174,.08);
+    border-color: rgba(255,158,174,.22);
+}
+.btn-table.btn-danger:hover {
+    color: #1e1b24;
+    background: var(--danger);
+    border-color: var(--danger);
+}
 
 /* Search */
 .search-box { margin-bottom: 15px; }

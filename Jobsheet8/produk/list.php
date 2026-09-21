@@ -6,7 +6,7 @@ include __DIR__ . '/../includes/header.php';
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 
-$stmt = $pdo->query("SELECT kode, nama, kategori, harga, stok FROM produk ORDER BY id DESC");
+$stmt = $pdo->query("SELECT id, kode, nama, kategori, harga, stok FROM produk ORDER BY id DESC");
 $daftarProduk = $stmt->fetchAll();
 ?>
 <section class="content-card">
@@ -26,10 +26,10 @@ $daftarProduk = $stmt->fetchAll();
 
     <div class="table-responsive">
         <table>
-            <thead><tr><th>Kode</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th></tr></thead>
+            <thead><tr><th>Kode</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
             <tbody>
             <?php if (!$daftarProduk): ?>
-                <tr><td colspan="5"><div class="empty-state"><span>❀</span><strong>Belum ada produk</strong><small>Tambahkan produk komputer pertama melalui tombol di atas.</small></div></td></tr>
+                <tr><td colspan="6"><div class="empty-state"><span>❀</span><strong>Belum ada produk</strong><small>Tambahkan produk komputer pertama melalui tombol di atas.</small></div></td></tr>
             <?php else: foreach ($daftarProduk as $produk): ?>
                 <?php
                     $stok = (int)$produk['stok'];
@@ -42,6 +42,12 @@ $daftarProduk = $stmt->fetchAll();
                     <td><span class="category-pill"><?= htmlspecialchars($produk['kategori']) ?></span></td>
                     <td>Rp <?= number_format((float)$produk['harga'], 0, ',', '.') ?></td>
                     <td><span class="stock-badge <?= $statusClass ?>"><?= $stok ?> · <?= $statusText ?></span></td>
+                    <td>
+                        <form action="proses_hapus.php" method="post" onsubmit="return confirm('Yakin ingin menghapus produk ini?\n\n<?= htmlspecialchars($produk['nama'], ENT_QUOTES, 'UTF-8') ?>');">
+                            <input type="hidden" name="id" value="<?= (int)$produk['id'] ?>">
+                            <button type="submit" class="btn-table btn-danger">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; endif; ?>
             </tbody>

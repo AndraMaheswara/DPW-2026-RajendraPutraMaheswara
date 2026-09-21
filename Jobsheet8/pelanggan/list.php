@@ -26,10 +26,10 @@ $daftarPelanggan = $stmt->fetchAll();
 
     <div class="table-responsive">
         <table>
-            <thead><tr><th>ID</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Alamat</th></tr></thead>
+            <thead><tr><th>Kode</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Alamat</th><th>Aksi</th></tr></thead>
             <tbody>
             <?php if (!$daftarPelanggan): ?>
-                <tr><td colspan="5"><div class="empty-state"><span>✿</span><strong>Belum ada pelanggan</strong><small>Tambahkan pelanggan pertama melalui tombol di atas.</small></div></td></tr>
+                <tr><td colspan="6"><div class="empty-state"><span>✿</span><strong>Belum ada pelanggan</strong><small>Tambahkan pelanggan pertama melalui tombol di atas.</small></div></td></tr>
             <?php else: foreach ($daftarPelanggan as $pelanggan): ?>
                 <tr>
                     <td><span class="code-pill"><?= htmlspecialchars($pelanggan['kode']) ?></span></td>
@@ -37,6 +37,12 @@ $daftarPelanggan = $stmt->fetchAll();
                     <td><?= htmlspecialchars($pelanggan['email']) ?></td>
                     <td><?= htmlspecialchars($pelanggan['no_hp']) ?></td>
                     <td><?= htmlspecialchars($pelanggan['alamat']) ?></td>
+                    <td>
+                        <form action="proses_hapus.php" method="post" onsubmit="return confirm('Yakin ingin menghapus pelanggan ini?\n\n<?= htmlspecialchars($pelanggan['nama'], ENT_QUOTES, 'UTF-8') ?>');">
+                            <input type="hidden" name="id" value="<?= (int)$pelanggan['id'] ?>">
+                            <button type="submit" class="btn-table btn-danger">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; endif; ?>
             </tbody>
