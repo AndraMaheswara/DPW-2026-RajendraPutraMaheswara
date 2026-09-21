@@ -1,0 +1,61 @@
+/* =========================================================================
+   SIMPUS-Mini — style.css
+   Versi Bootstrap 5.3.3 (Jobsheet 3) + JavaScript (Jobsheet 5)
+   -------------------------------------------------------------------------
+   Sebagian besar tampilan sekarang ditangani lewat utility class & komponen
+   Bootstrap langsung di HTML (.container, .card, .row/.col-*, .table-*,
+   .form-*, .btn-*, .navbar). File ini HANYA berisi hal-hal yang memang
+   tidak disediakan Bootstrap secara bawaan:
+     1) Identitas brand SIMPUS-Mini (font, warna teks, warna latar, link)
+     2) Override warna navbar & tombol submit (brand pink, bukan tema
+        default Bootstrap)
+     3) Gaya pesan error validasi dari app.js (Jobsheet 5)
+   ========================================================================= */
+
+/* ===== Identitas Brand (warna & font khas SIMPUS-Mini) ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #a1306b;
+    background-color: #fff5f8;
+    line-height: 1.5;
+}
+
+a {
+    color: #c45b7c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Navbar: warna brand pink, bukan tema default Bootstrap =====
+   navbar-dark saja belum cukup kontras untuk brand pink kita, jadi warna
+   teks navbar-brand & nav-link di-override manual (lihat Jobsheet 3
+   Bootstrap, bab 6.3 "Kapan Tetap Perlu CSS Custom"). */
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffeaf0 !important;
+}
+
+/* ===== Tombol submit: warna hover brand (bukan tema Bootstrap) ===== */
+form button[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #164869 !important;
+}
+
+/* ===== Pesan Error Validasi (Jobsheet 5) =====
+   Class ini TIDAK ada secara statis di HTML manapun — disisipkan
+   sepenuhnya oleh app.js (fungsi tampilkanError) setiap kali validasi
+   form gagal. */
+.error {
+    display: block;
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
