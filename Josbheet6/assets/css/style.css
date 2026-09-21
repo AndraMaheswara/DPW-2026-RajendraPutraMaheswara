@@ -1,0 +1,183 @@
+/* =========================================================================
+   SIMPUS-Mini — style.css
+   Versi Bootstrap 5.3.3 (Jobsheet 3) + JavaScript (Jobsheet 5)
+   -------------------------------------------------------------------------
+   Sebagian besar tampilan sekarang ditangani lewat utility class & komponen
+   Bootstrap langsung di HTML (.container, .card, .row/.col-*, .table-*,
+   .form-*, .btn-*, .navbar). File ini HANYA berisi hal-hal yang memang
+   tidak disediakan Bootstrap secara bawaan:
+     1) Identitas brand SIMPUS-Mini (font, warna teks, warna latar, link)
+     2) Override warna navbar & tombol submit (brand pink, bukan tema
+        default Bootstrap)
+     3) Gaya pesan error validasi dari app.js (Jobsheet 5)
+   ========================================================================= */
+
+/* ===== Identitas Brand (warna & font khas SIMPUS-Mini) ===== */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #a1306b;
+    background-color: #fff5f8;
+    line-height: 1.5;
+}
+
+a {
+    color: #c45b7c;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== Navbar: warna brand pink, bukan tema default Bootstrap =====
+   navbar-dark saja belum cukup kontras untuk brand pink kita, jadi warna
+   teks navbar-brand & nav-link di-override manual (lihat Jobsheet 3
+   Bootstrap, bab 6.3 "Kapan Tetap Perlu CSS Custom"). */
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffeaf0 !important;
+}
+
+/* ===== Tombol submit: warna hover brand (bukan tema Bootstrap) ===== */
+form button[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #164869 !important;
+}
+
+/* ===== Pesan Error Validasi (Jobsheet 5) =====
+   Class ini TIDAK ada secara statis di HTML manapun — disisipkan
+   sepenuhnya oleh app.js (fungsi tampilkanError) setiap kali validasi
+   form gagal. */
+.error {
+    display: block;
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+
+/* ===== Halaman list non-Bootstrap ===== */
+body > header:not(.navbar) {
+    background-color: #d96b8a;
+    color: #fff;
+    padding: 1rem 5%;
+}
+
+body > header:not(.navbar) h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+body > header:not(.navbar) nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+}
+
+body > header:not(.navbar) nav a {
+    color: #fff;
+    font-weight: 600;
+}
+
+.nav-toggle-label {
+    display: none;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 0.4rem;
+    background: transparent;
+    color: #fff;
+    padding: 0.35rem 0.55rem;
+    cursor: pointer;
+}
+
+body > main:not(.container) {
+    width: min(1100px, 90%);
+    margin: 2rem auto;
+}
+
+body > main:not(.container) section {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+.search-box {
+    display: grid;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.4rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table-responsive table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-responsive th,
+.table-responsive td {
+    border: 1px solid #ead3da;
+    padding: 0.7rem;
+    text-align: left;
+}
+
+.table-responsive th {
+    background-color: #fff0f4;
+}
+
+.table-responsive button {
+    border: 0;
+    border-radius: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    cursor: pointer;
+    background: #d96b8a;
+    color: #fff;
+}
+
+.table-responsive .btn-hapus {
+    background: #c94f67;
+}
+
+body > footer:not(.text-center) {
+    text-align: center;
+    color: #777;
+    padding: 1rem;
+}
+
+@media (max-width: 700px) {
+    .nav-toggle-label {
+        display: inline-block;
+    }
+
+    body > header:not(.navbar) nav {
+        display: none;
+    }
+
+    body > header:not(.navbar) nav.nav-open {
+        display: block;
+    }
+
+    body > header:not(.navbar) nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
