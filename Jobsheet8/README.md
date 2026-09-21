@@ -1,17 +1,14 @@
-# TECHSTORE MINI — Jobsheet 7
+# TECHSTORE MINI — Jobsheet 8
 
-Project latihan PHP Jobsheet 7 yang diadaptasi dari sistem perpustakaan menjadi sistem manajemen toko komputer.
+Sistem manajemen toko komputer berbasis PHP, PDO, dan PostgreSQL (Supabase).
 
-## Entitas
-- Pelanggan: ID, nama, email, nomor HP, alamat.
-- Produk: kode, nama, kategori, harga, stok.
+## Data
+- Pelanggan: tersimpan di tabel `pelanggan`.
+- Produk: tersimpan di tabel `produk`.
 
-## Materi yang dipertahankan
-PHP dasar, include header/footer, session, POST, validasi server-side, redirect, flash message, dan rendering data dengan `foreach`.
+## Deploy
+Project ini disiapkan untuk Vercel menggunakan `Dockerfile.vercel` + FrankenPHP.
+Credential Supabase harus disimpan sebagai Environment Variables di Vercel, bukan di GitHub.
 
-## Menjalankan dengan Laragon
-Letakkan folder `jobsheet07` sebagai `C:\laragon\www\TECHSTORE-MINI`, lalu buka:
-`http://localhost/TECHSTORE-MINI/`
-
-## Theme
-Visual menggunakan gaya gelap, glass/translucent, pink Sakura, dan tipografi Cinzel/Poppins yang diadaptasi dari VercelTest.
+## Lokal
+Gunakan Laragon/PHP dengan ekstensi `pdo_pgsql` aktif.

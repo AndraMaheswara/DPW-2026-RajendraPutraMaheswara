@@ -1,9 +1,13 @@
 <?php
 $page_title = "Produk";
+require_once __DIR__ . '/../includes/database.php';
 include __DIR__ . '/../includes/header.php';
+
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-$daftarProduk = $_SESSION['produk'] ?? [];
+
+$stmt = $pdo->query("SELECT kode, nama, kategori, harga, stok FROM produk ORDER BY id DESC");
+$daftarProduk = $stmt->fetchAll();
 ?>
 <section class="content-card">
     <div class="section-heading">
@@ -12,7 +16,7 @@ $daftarProduk = $_SESSION['produk'] ?? [];
     </div>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo htmlspecialchars($flash['type']); ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?= htmlspecialchars($flash['type']) ?>"><?= htmlspecialchars($flash['pesan']) ?></p>
     <?php endif; ?>
 
     <div class="search-box">
@@ -22,10 +26,10 @@ $daftarProduk = $_SESSION['produk'] ?? [];
 
     <div class="table-responsive">
         <table>
-            <thead><tr><th>Kode</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead>
+            <thead><tr><th>Kode</th><th>Nama Produk</th><th>Kategori</th><th>Harga</th><th>Stok</th></tr></thead>
             <tbody>
-            <?php if (empty($daftarProduk)): ?>
-                <tr><td colspan="6"><div class="empty-state"><span>❀</span><strong>Belum ada produk</strong><small>Tambahkan produk komputer pertama melalui tombol di atas.</small></div></td></tr>
+            <?php if (!$daftarProduk): ?>
+                <tr><td colspan="5"><div class="empty-state"><span>❀</span><strong>Belum ada produk</strong><small>Tambahkan produk komputer pertama melalui tombol di atas.</small></div></td></tr>
             <?php else: foreach ($daftarProduk as $produk): ?>
                 <?php
                     $stok = (int)$produk['stok'];
@@ -33,12 +37,11 @@ $daftarProduk = $_SESSION['produk'] ?? [];
                     $statusText = $stok === 0 ? 'Habis' : ($stok <= 5 ? 'Stok Menipis' : 'Tersedia');
                 ?>
                 <tr>
-                    <td><span class="code-pill"><?php echo htmlspecialchars($produk['kode']); ?></span></td>
-                    <td><strong><?php echo htmlspecialchars($produk['nama']); ?></strong></td>
-                    <td><span class="category-pill"><?php echo htmlspecialchars($produk['kategori']); ?></span></td>
-                    <td>Rp <?php echo number_format((int)$produk['harga'], 0, ',', '.'); ?></td>
-                    <td><span class="stock-badge <?php echo $statusClass; ?>"><?php echo $stok; ?> · <?php echo $statusText; ?></span></td>
-                    <td><button type="button" class="btn-table btn-hapus">Hapus</button></td>
+                    <td><span class="code-pill"><?= htmlspecialchars($produk['kode']) ?></span></td>
+                    <td><strong><?= htmlspecialchars($produk['nama']) ?></strong></td>
+                    <td><span class="category-pill"><?= htmlspecialchars($produk['kategori']) ?></span></td>
+                    <td>Rp <?= number_format((float)$produk['harga'], 0, ',', '.') ?></td>
+                    <td><span class="stock-badge <?= $statusClass ?>"><?= $stok ?> · <?= $statusText ?></span></td>
                 </tr>
             <?php endforeach; endif; ?>
             </tbody>

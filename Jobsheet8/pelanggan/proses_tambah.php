@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../includes/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: tambah.php');
@@ -17,23 +18,32 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Em
 if ($noHp === '') $errors[] = 'Nomor HP wajib diisi.';
 if ($alamat === '') $errors[] = 'Alamat wajib diisi.';
 
-if (!empty($errors)) {
+if ($errors) {
     $_SESSION['flash'] = ['type' => 'error', 'pesan' => implode(' ', $errors)];
     header('Location: tambah.php');
     exit;
 }
 
-if (!isset($_SESSION['pelanggan'])) $_SESSION['pelanggan'] = [];
+try {
+    $next = (int) $pdo->query("SELECT COALESCE(MAX(id), 0) + 1 FROM pelanggan")->fetchColumn();
+    $kode = 'PLG-' . str_pad((string) $next, 3, '0', STR_PAD_LEFT);
 
-$nextId = count($_SESSION['pelanggan']) + 1;
-$_SESSION['pelanggan'][] = [
-    'id' => 'PLG-' . str_pad((string)$nextId, 3, '0', STR_PAD_LEFT),
-    'nama' => $nama,
-    'email' => $email,
-    'no_hp' => $noHp,
-    'alamat' => $alamat
-];
+    $stmt = $pdo->prepare(
+        "INSERT INTO pelanggan (kode, nama, email, no_hp, alamat)
+         VALUES (:kode, :nama, :email, :no_hp, :alamat)"
+    );
+    $stmt->execute([
+        ':kode' => $kode,
+        ':nama' => $nama,
+        ':email' => $email,
+        ':no_hp' => $noHp,
+        ':alamat' => $alamat,
+    ]);
 
-$_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil ditambahkan.'];
+    $_SESSION['flash'] = ['type' => 'success', 'pesan' => 'Pelanggan berhasil ditambahkan.'];
+} catch (PDOException $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'pesan' => 'Gagal menyimpan pelanggan ke database.'];
+}
+
 header('Location: list.php');
 exit;

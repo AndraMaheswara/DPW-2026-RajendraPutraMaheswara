@@ -28,18 +28,6 @@ function initNavToggle() {
     });
 }
 
-function initHapusConfirm() {
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('.btn-hapus');
-        if (!btn) return;
-        const row = btn.closest('tr');
-        const nameCell = row ? row.querySelector('td:nth-child(2)') : null;
-        const nama = nameCell ? nameCell.textContent.trim() : 'data ini';
-        if (confirm('Hapus "' + nama + '" dari tampilan?')) {
-            if (row) row.remove();
-        }
-    });
-}
 
 function initTableFilter() {
     const input = document.getElementById('search-input');
@@ -107,7 +95,6 @@ function initValidasiForm() {
 document.addEventListener('DOMContentLoaded', () => {
     initSakuraDecor();
     initNavToggle();
-    initHapusConfirm();
     initTableFilter();
     initValidasiForm();
 });

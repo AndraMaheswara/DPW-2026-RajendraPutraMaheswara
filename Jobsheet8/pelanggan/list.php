@@ -1,9 +1,13 @@
 <?php
 $page_title = "Pelanggan";
+require_once __DIR__ . '/../includes/database.php';
 include __DIR__ . '/../includes/header.php';
+
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
-$daftarPelanggan = $_SESSION['pelanggan'] ?? [];
+
+$stmt = $pdo->query("SELECT id, kode, nama, email, no_hp, alamat FROM pelanggan ORDER BY id DESC");
+$daftarPelanggan = $stmt->fetchAll();
 ?>
 <section class="content-card">
     <div class="section-heading">
@@ -12,7 +16,7 @@ $daftarPelanggan = $_SESSION['pelanggan'] ?? [];
     </div>
 
     <?php if ($flash): ?>
-        <p class="flash flash-<?php echo htmlspecialchars($flash['type']); ?>"><?php echo htmlspecialchars($flash['pesan']); ?></p>
+        <p class="flash flash-<?= htmlspecialchars($flash['type']) ?>"><?= htmlspecialchars($flash['pesan']) ?></p>
     <?php endif; ?>
 
     <div class="search-box">
@@ -22,18 +26,17 @@ $daftarPelanggan = $_SESSION['pelanggan'] ?? [];
 
     <div class="table-responsive">
         <table>
-            <thead><tr><th>ID</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Alamat</th><th>Aksi</th></tr></thead>
+            <thead><tr><th>ID</th><th>Nama</th><th>Email</th><th>No. HP</th><th>Alamat</th></tr></thead>
             <tbody>
-            <?php if (empty($daftarPelanggan)): ?>
-                <tr><td colspan="6"><div class="empty-state"><span>✿</span><strong>Belum ada pelanggan</strong><small>Tambahkan pelanggan pertama melalui tombol di atas.</small></div></td></tr>
+            <?php if (!$daftarPelanggan): ?>
+                <tr><td colspan="5"><div class="empty-state"><span>✿</span><strong>Belum ada pelanggan</strong><small>Tambahkan pelanggan pertama melalui tombol di atas.</small></div></td></tr>
             <?php else: foreach ($daftarPelanggan as $pelanggan): ?>
                 <tr>
-                    <td><span class="code-pill"><?php echo htmlspecialchars($pelanggan['id']); ?></span></td>
-                    <td><strong><?php echo htmlspecialchars($pelanggan['nama']); ?></strong></td>
-                    <td><?php echo htmlspecialchars($pelanggan['email']); ?></td>
-                    <td><?php echo htmlspecialchars($pelanggan['no_hp']); ?></td>
-                    <td><?php echo htmlspecialchars($pelanggan['alamat']); ?></td>
-                    <td><button type="button" class="btn-table btn-hapus">Hapus</button></td>
+                    <td><span class="code-pill"><?= htmlspecialchars($pelanggan['kode']) ?></span></td>
+                    <td><strong><?= htmlspecialchars($pelanggan['nama']) ?></strong></td>
+                    <td><?= htmlspecialchars($pelanggan['email']) ?></td>
+                    <td><?= htmlspecialchars($pelanggan['no_hp']) ?></td>
+                    <td><?= htmlspecialchars($pelanggan['alamat']) ?></td>
                 </tr>
             <?php endforeach; endif; ?>
             </tbody>
