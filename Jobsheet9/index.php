@@ -37,8 +37,10 @@ $stokMenipis = (int) $pdo->query("SELECT COUNT(*) FROM produk WHERE stok BETWEEN
 </section>
 
 <section class="content-card welcome-note">
-    <p class="eyebrow">DATABASE</p>
-    <h2>Data tersimpan di PostgreSQL.</h2>
-    <p>TECHSTORE MINI menggunakan PDO untuk terhubung ke Supabase PostgreSQL.</p>
+    <p class="eyebrow">JOBSHEET 09</p>
+    <h2>Manajemen Data dengan CRUD.</h2>
+    <p>TECHSTORE MINI menggunakan PostgreSQL dan PDO untuk mengelola data pelanggan dan produk melalui fitur tambah, tampil, edit, dan hapus data.</p>
+    <p>Jobsheet ini juga menerapkan pencarian dan pagination server-side untuk memudahkan pengelolaan data.</p>
 </section>
+
 <?php include __DIR__ . '/includes/footer.php'; ?>
