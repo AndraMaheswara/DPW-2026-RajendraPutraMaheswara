@@ -1,0 +1,9 @@
+git
+.git
+.env
+.env.*
+database.local.php
+phpinfo.php
+test-db.php
+docs
+Dokumentasi

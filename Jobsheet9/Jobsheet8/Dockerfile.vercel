@@ -1,0 +1,10 @@
+FROM dunglas/frankenphp:php8.4-bookworm
+
+RUN install-php-extensions pdo_pgsql
+
+WORKDIR /app
+COPY . /app
+
+ENV SERVER_NAME=:80
+
+CMD ["sh", "-c", "frankenphp php-server --root /app --listen :${PORT:-80}"]
