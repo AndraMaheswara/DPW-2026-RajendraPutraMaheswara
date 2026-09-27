@@ -34,9 +34,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <li><a class="<?php echo strpos($_SERVER['PHP_SELF'], '/produk/') !== false ? 'active' : ''; ?>" href="<?php echo $base; ?>produk/list.php">Produk</a></li>
                 <?php if ($sudahLogin): ?>
                     <li><a class="<?php echo strpos($_SERVER['PHP_SELF'], '/pelanggan/') !== false ? 'active' : ''; ?>" href="<?php echo $base; ?>pelanggan/list.php">Pelanggan</a></li>
-                    <li><a href="<?php echo $base; ?>produk/tambah.php">Tambah Produk</a></li>
-                    <li><a href="<?php echo $base; ?>pelanggan/tambah.php">Tambah Pelanggan</a></li>
-                <?php endif; ?>
+<?php endif; ?>
             </ul>
         </nav>
         <div class="auth-status">
